@@ -7,21 +7,34 @@ from sqlalchemy.orm import sessionmaker
 Base = declarative_base()
 
 def create_table(base, engine):
-    __tablename__ = 'dogs'
+    # __tablename__ = 'dogs'
 
-    Index('index_name', 'name')
+    # Index('index_name', 'name')
 
-    id = Column(Integer(), primary_key=True)
-    name = Column(String())
-    grade = Column(Integer())
+    # id = Column(Integer(), primary_key=True)
+    # name = Column(String())
+    # grade = Column(Integer())
+#     base.metadata.create_all(engine)
+
+    #this stuff above is already in models, so I can omit it
+
+# if __name__ == '__main__':
+
+#     engine = create_engine('sqlite:///:memory:')
+#     Base.metadata.create_all(engine)
+
+#     Session = sessionmaker(bind=engine)
+#     session = Session()
+
+    Base.metadata.create_all(engine)
 
 if __name__ == '__main__':
-
     engine = create_engine('sqlite:///:memory:')
-    Base.metadata.create_all(engine)
+    create_table(engine)
 
     Session = sessionmaker(bind=engine)
     session = Session()
+    # pass
     
 def save(session, dog):
     session.add(dog)
